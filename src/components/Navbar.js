@@ -1,11 +1,11 @@
-// Navbar.js
 import React from 'react';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 
 function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary sticky-top shadow-sm">
       <div className="container">
-        <a className="navbar-brand fw-bold" href="#">Product Showcase</a>
+        <Link className="navbar-brand fw-bold" to="/">Product Showcase</Link> {/* Use Link instead of a */}
         <button
           className="navbar-toggler"
           type="button"
@@ -20,13 +20,13 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="navbarScroll">
           <ul className="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll" style={{ '--bs-scroll-height': '100px' }}>
             <li className="nav-item">
-              <a className="nav-link active fw-semibold" aria-current="page" href="#">Home</a>
+              <Link className="nav-link active fw-semibold" aria-current="page" to="/">Home</Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link fw-semibold" href="#">Products</a>
+              <Link className="nav-link fw-semibold" to="/category">Category</Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link fw-semibold" href="#">Contact Us</a>
+              <Link className="nav-link fw-semibold" to="/contact">Contact Us</Link>
             </li>
           </ul>
         </div>

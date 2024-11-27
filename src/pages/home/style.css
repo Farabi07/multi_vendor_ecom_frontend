@@ -1,94 +1,50 @@
-/* Navbar */
-.navbar {
-    font-weight: 600;
-  }
-  
-  .navbar-brand {
-    font-family: 'Georgia', serif;
-    font-size: 30px;
-  }
-  
-  .navbar-nav .nav-item .nav-link {
-    font-weight: 500;
-  }
-  
-  .navbar-nav .nav-item .nav-link.active {
-    color: #fff !important;
-  }
-  
-  /* Card Style */
-  .card {
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .card-body {
-    padding: 1.5rem;
-  }
-  
-  .card-img-top {
-    border-radius: 0.5rem;
-  }
-  
-  .card-title {
-    font-weight: 600;
-  }
-  
-  .card-text {
-    color: #6c757d;
-  }
-  
-  .card-body .btn {
-    font-size: 0.875rem;
-  }
-  
-  .card-body .btn-sm {
-    padding: 0.5rem 1rem;
-    font-size: 0.875rem;
-  }
-  
-  /* Button Hover Effects */
-  .btn:hover {
-    opacity: 0.9;
-  }
-  
-  /* Categories and Sellers Card */
-  .card.bg-light {
-    background-color: #f8f9fa;
-  }
-  
-  .card-body a.btn-outline-primary {
-    border-radius: 30px;
-  }
-  
-  /* Footer */
-  footer {
-    background-color: #343a40;
-  }
-  
-  footer p {
-    margin: 0;
-  }
-  
-  /* Container Margin */
-  .container {
-    margin-top: 5rem;
-  }
-  
-  .row.g-4 {
-    gap: 1.5rem;
-  }
-  
-  section h3 {
-    font-weight: 600;
-    font-size: 1.25rem;
-  }
-  
-  .card-img-top.rounded-circle {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-top: 1.5rem;
-  }
-  
+/* Card Style */
+.card {
+  border-radius: 0.5rem; /* Smaller border radius */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  background-color: #ffffff; /* Classic white */
+  margin-bottom: 1rem; /* Small bottom margin */
+  max-width: 100%; /* Cards scale within columns */
+}
+
+.card-body {
+  padding: 0.75rem; /* Reduced padding */
+}
+
+.card-img-top {
+  border-radius: 0.25rem; /* Smaller image border radius */
+  height: 150px; /* Fixed height for uniformity */
+  object-fit: cover; /* Maintain aspect ratio */
+}
+
+.card-title {
+  font-family: 'Georgia', serif;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #333;
+}
+
+.card-text {
+  color: #6c757d;
+  font-size: 0.875rem;
+}
+
+.card-body .btn {
+  font-size: 0.75rem;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.card-body .btn-sm {
+  padding: 0.3rem 0.75rem;
+  font-size: 0.75rem;
+}
+
+/* Button Hover Effects */
+.btn:hover {
+  opacity: 0.85;
+  background-color: #007bff;
+  color: #fff;
+}
+
