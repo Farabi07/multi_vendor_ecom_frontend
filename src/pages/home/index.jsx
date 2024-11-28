@@ -5,7 +5,7 @@ import ProductCard from '../../components/ProductCard';
 import CategoryCard from '../../components/CategoryCard';
 import SellerCard from '../../components/SellerCard';
 import DownloadableProductCard from '../../components/DownloadCard';
-
+import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import './style.css';  // Import the custom CSS
@@ -48,10 +48,13 @@ function Homepage() {
       <main className="container my-5">
         {/* Latest Products Section */}
         <div className="d-flex justify-content-between align-items-center mb-4">
-          <h3 className="fw-bold">Latest Products</h3>
-          <a href="#" className="btn btn-dark">
-            View All Products <i className="fa-solid fa-arrow-right ms-2"></i>
-          </a>
+        <h3 className="fw-bold">Latest Products</h3>
+        <a className="btn btn-dark">
+          <Link to="/products" className="text-white text-decoration-none">
+            View All Products
+          </Link>
+          <i className="fa-solid fa-arrow-right ms-2"></i>
+        </a>
         </div>
         <div className="row row-cols-1 row-cols-md-4 g-4">
           {currentProducts.map((product, index) => (

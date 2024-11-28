@@ -4,6 +4,7 @@ import Homepage from '../pages/home';
 import Contact from '../pages/contact';
 import Category from '../pages/category';
 import ProductsCategory from '../pages/category/ProductsCategory';
+import AllProduct from '../components/AllProducts';
 
 const AppRoute = () => {
   return (
@@ -13,6 +14,7 @@ const AppRoute = () => {
         <Route path="/" element={<Homepage />} />
         <Route path="contact/" element={<Contact/>} />
         <Route path="category/" element={<Category/>} />
+        <Route path="products/" element={<AllProduct/>} />
         <Route path="category/:category_slug/:category_id/" element={<ProductsCategory/>} />
       </Routes>
     </BrowserRouter>
