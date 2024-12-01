@@ -51,3 +51,9 @@
   margin-bottom: 0 !important; /* Remove any bottom margin */
   padding-bottom: 0 !important; /* Remove any extra padding */
 }
+
+
+.custom-carousel-img {
+  height: 500px;  /* Set your desired height */
+  object-fit: cover;  /* Ensures the image fills the container without distorting */
+}
