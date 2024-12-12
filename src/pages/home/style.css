@@ -47,9 +47,25 @@
   background-color: #007bff;
   color: #fff;
 }
-.footer {
-  margin-bottom: 0 !important; /* Remove any bottom margin */
-  padding-bottom: 0 !important; /* Remove any extra padding */
+ /* Footer Styling */
+ footer {
+  background-color: #0D2857; /* Dark background for contrast */
+  color: #ffffff; /* White text for better contrast */
+  padding: 40px 0;
+  text-align: center;
+  font-size: 1rem;
+}
+
+footer .footer-link {
+  color: #00f2fe;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+footer .footer-link:hover {
+  color: #ff9a8b; /* Soft hover color */
+  text-decoration: underline;
+  transition: color 0.3s ease;
 }
 
 
@@ -57,3 +73,4 @@
   height: 500px;  /* Set your desired height */
   object-fit: cover;  /* Ensures the image fills the container without distorting */
 }
+

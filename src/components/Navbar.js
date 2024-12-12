@@ -3,7 +3,11 @@ import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 
 function Navbar() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary sticky-top shadow-sm">
+    // <nav className="navbar navbar-expand-lg navbar-dark sticky-top shadow-sm">
+    <nav
+  className="navbar navbar-expand-lg sticky-top shadow-sm"
+  style={{ backgroundColor: '#FFFFFF', color: '#FFFBC6' }}
+>
       <div className="container">
         <Link className="navbar-brand fw-bold" to="/">Product Showcase</Link> {/* Use Link instead of a */}
         <button

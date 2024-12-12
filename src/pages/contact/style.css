@@ -1,0 +1,158 @@
+/* Hero Section Styling */
+.hero-section {
+    background: linear-gradient(to right, #a6c0fe, #f68084); /* Soft, professional gradient */
+    color: white;
+    padding: 100px 0;
+    position: relative;
+    height: 400px;
+    margin-bottom: 40px;
+    overflow: hidden;
+  }
+  
+  .hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+  }
+  
+  .overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 0, 0, 0.7); /* Smooth glowing text */
+    z-index: 2;
+  }
+  
+  .overlay-text h1 {
+    font-size: 4rem;
+    margin-bottom: 15px;
+  }
+  
+  .overlay-text p {
+    font-size: 1.5rem;
+    margin-top: 10px;
+  }
+  
+  /* Button Styling */
+  button[type="submit"] {
+    background: linear-gradient(to right,#3554D1,  #3554D1); /* Elegant gradient */
+    border: none;
+    color: white;
+    border-radius: 30px;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  button[type="submit"]:hover {
+    background-color:  #3554D1;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+  }
+  
+  button[type="submit"]:focus {
+    outline: none;
+    box-shadow: 0 0 8px rgba(0, 242, 254, 0.7);
+  }
+  
+  /* General Text Styling */
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f7fc; /* Light background for a soft touch */
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  /* Card and Form Styling */
+  .card {
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Soft and elegant shadow */
+    padding: 30px;
+    background-color: #ffffff;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .form-label {
+    font-weight: bold;
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  .form-control {
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    transition: border-color 0.3s ease;
+  }
+  
+  .form-control:focus {
+    border-color: #00f2fe; /* Focus color that matches the button gradient */
+    box-shadow: 0 0 5px rgba(0, 242, 254, 0.7);
+  }
+  
+  /* List Items */
+  ul.list-unstyled li {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    color: #333;
+  }
+  
+  ul.list-unstyled i {
+    font-size: 1.4rem;
+    color: #4facfe; /* Soft blue color for icons */
+  }
+  
+
+ /* Footer Styling */
+footer {
+  background-color: #0D2857; /* Dark background for contrast */
+  color: #ffffff; /* White text for better contrast */
+  padding: 40px 0;
+  text-align: center;
+  font-size: 1rem;
+}
+
+footer .footer-link {
+  color: #00f2fe;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+footer .footer-link:hover {
+  color: #ff9a8b; /* Soft hover color */
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+  
+  /* Responsive Enhancements */
+  @media (max-width: 768px) {
+    .overlay-text h1 {
+      font-size: 2.5rem;
+    }
+  
+    .overlay-text p {
+      font-size: 1.2rem;
+    }
+  
+    button[type="submit"] {
+      font-size: 1rem;
+      padding: 10px 25px;
+    }
+  }
+  
+  

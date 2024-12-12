@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../../components/Navbar';
 import Slider from '../../components/Slider';
 import ProductCard from '../../components/ProductCard';
@@ -9,35 +9,32 @@ import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import './style.css';  // Import the custom CSS
+import Footer from '../../components/Footer';
 
 function Homepage() {
-  // Sample products for pagination
-  const allProducts = Array.from({ length: 20 }, (_, index) => ({
-    title: `Product ${index + 1}`,
-    price: `$${(index + 1) * 10}.00`,
-  }));
+  const [latestProducts, setLatestProducts] = useState([]); // State for latest products
+  const [loading, setLoading] = useState(true); // Loading state
+  const [error, setError] = useState(null); // Error state
 
-  const [currentPage, setCurrentPage] = useState(1); // Current page state
-  const productsPerPage = 4; // Number of products per page
+  // Fetch latest products from the API
+  useEffect(() => {
+    const fetchLatestProducts = async () => {
+      try {
+        const response = await fetch('http://192.168.68.125:8003/ecom_product/api/v1/product/latest_product/');
+        if (!response.ok) {
+          throw new Error('Failed to fetch latest products');
+        }
+        const data = await response.json();
+        setLatestProducts(data.latest_products);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
 
-  // Calculate indices for slicing products array
-  const startIndex = (currentPage - 1) * productsPerPage;
-  const endIndex = startIndex + productsPerPage;
-  const currentProducts = allProducts.slice(startIndex, endIndex);
-
-  // Total number of pages
-  const totalPages = Math.ceil(allProducts.length / productsPerPage);
-
-  // Pagination Handlers
-  const handlePrev = () => {
-    if (currentPage > 1) setCurrentPage(currentPage - 1);
-  };
-
-  const handleNext = () => {
-    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
-  };
-
-  const handlePageClick = (pageNumber) => setCurrentPage(pageNumber);
+    fetchLatestProducts();
+  }, []);
 
   return (
     <>
@@ -48,60 +45,37 @@ function Homepage() {
       <main className="container my-5">
         {/* Latest Products Section */}
         <div className="d-flex justify-content-between align-items-center mb-4">
-        <h3 className="fw-bold">Latest Products</h3>
-        <a className="btn btn-dark">
-          <Link to="/products" className="text-white text-decoration-none">
-            View All Products
-          </Link>
-          <i className="fa-solid fa-arrow-right ms-2"></i>
-        </a>
+          <h3 className="fw-bold">Latest Products</h3>
+          <a className="btn btn-dark">
+            <Link to="/products" className="text-white text-decoration-none">
+              View All Products
+            </Link>
+            <i className="fa-solid fa-arrow-right ms-2"></i>
+          </a>
         </div>
+
+        {/* Loading and Error Handling */}
+        {loading && <p>Loading latest products...</p>}
+        {error && <p className="text-danger">Error: {error}</p>}
+
+        {/* Display Latest Products */}
         <div className="row row-cols-1 row-cols-md-4 g-4">
-          {currentProducts.map((product, index) => (
+          {!loading && !error && latestProducts.length === 0 && (
+            <p>No products found</p>
+          )}
+          {latestProducts.map((product) => (
             <ProductCard
-              key={index}
+              key={product.id}
               title={product.title}
-              price={product.price}
-              index={startIndex + index}
+              price={product.price || 'N/A'} // Handle null price
               className="col-3"
             />
           ))}
         </div>
 
-        {/* Pagination */}
-        <div className="d-flex justify-content-center mt-4">
-          <nav>
-            <ul className="pagination">
-              <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
-                <button className="page-link" onClick={handlePrev}>
-                  &laquo; Previous
-                </button>
-              </li>
-              {[...Array(totalPages)].map((_, index) => (
-                <li
-                  key={index}
-                  className={`page-item ${currentPage === index + 1 ? 'active' : ''}`}
-                >
-                  <button
-                    className="page-link"
-                    onClick={() => handlePageClick(index + 1)}
-                  >
-                    {index + 1}
-                  </button>
-                </li>
-              ))}
-              <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
-                <button className="page-link" onClick={handleNext}>
-                  Next &raquo;
-                </button>
-              </li>
-            </ul>
-          </nav>
-        </div>
-
         {/* Popular Categories Section */}
         <section className="mt-5">
-          <h3 className="fw-bold mb-4">Popular Categories</h3>
+          <h3 className="fw-bold mb-4">Top Categories</h3>
           <div className="row row-cols-1 row-cols-md-4 g-4">
             {['Electronics', 'Fashion', 'Books', 'Home Decor'].map((category, index) => (
               <CategoryCard key={index} category={category} />
@@ -135,9 +109,7 @@ function Homepage() {
       </main>
 
       {/* Footer Section */}
-      <footer className="bg-dark text-white text-center py-3 mt-auto">
-        <p className="mb-0">&copy; 2024 Product Showcase. All rights reserved.</p>
-      </footer>
+      <Footer />
     </>
   );
 }

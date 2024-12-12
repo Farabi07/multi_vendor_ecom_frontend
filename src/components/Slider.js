@@ -12,7 +12,7 @@ function Slider() {
         <div className="carousel-item active">
           <img
             src={`${mediaBaseUrl}slider1.jpg`} 
-            className="d-block w-100 custom-carousel-img"  // Added custom class
+            className="d-block w-100 custom-carousel-img"  
             alt="Slide 1"
           />
           <div className="carousel-caption d-none d-md-block">

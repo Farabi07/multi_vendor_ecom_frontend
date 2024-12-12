@@ -1,0 +1,20 @@
+ /* Footer Styling */
+ footer {
+    background-color: #0D2857; /* Dark background for contrast */
+    color: #ffffff; /* White text for better contrast */
+    padding: 40px 0;
+    text-align: center;
+    font-size: 1rem;
+  }
+  
+  footer .footer-link {
+    color: #00f2fe;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  footer .footer-link:hover {
+    color: #ff9a8b; /* Soft hover color */
+    text-decoration: underline;
+    transition: color 0.3s ease;
+  }

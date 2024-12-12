@@ -1,18 +1,35 @@
-import React, { useState } from 'react';
-import CategoryCard from './CategoryCard';
-import ProductCard from './ProductCard';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import CategoryCard from "./CategoryCard";
+import ProductCard from "./ProductCard";
+import API_BASE_URL from '../config/apiConfig'; 
 
-const CategoryProducts = () => {
-  // Sample data for categories, now including a unique `id` for each product
-  const allCategories = Array.from({ length: 20 }, (_, index) => ({
-    title: `Category ${index + 1}`,
-    price: `$${(index + 1) * 10}.00`,
-    productId: index + 1,  // Add a unique product ID
-  }));
-
-  // Pagination state
+const AllCategory = () => {
+  const [allCategories, setAllCategories] = useState([]); // State for all categories
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const categoriesPerPage = 4; // Number of categories per page
+
+  // Fetch categories from the API
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get(
+          `${API_BASE_URL}/ecom_product_category/api/v1/product_category/all/`
+        );
+        // Assuming API response contains a "products" array
+        setAllCategories(response.data.products);
+      } catch (err) {
+        setError("Failed to fetch categories. Please try again.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCategories();
+  }, []);
 
   // Calculate start and end indices for the current page
   const startIndex = (currentPage - 1) * categoriesPerPage;
@@ -37,6 +54,14 @@ const CategoryProducts = () => {
     setCurrentPage(pageNumber);
   };
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div className="alert alert-danger">{error}</div>;
+  }
+
   return (
     <main className="container my-5">
       {/* All Categories Section */}
@@ -46,10 +71,9 @@ const CategoryProducts = () => {
       <div className="row g-4">
         {currentCategories.map((category) => (
           <ProductCard
-            key={category.productId}  // Ensure unique key using `productId`
-            title={category.title}
-            price={category.price}
-            productId={category.productId} // Pass `productId` to the ProductCard
+            key={category.id} // Use unique ID from API response
+            title={category.title} // Use "title" from API response
+            details={category.details} // Use "details" from API response
           />
         ))}
       </div>
@@ -68,7 +92,7 @@ const CategoryProducts = () => {
             <button
               key={index}
               className={`btn ${
-                currentPage === index + 1 ? 'btn-secondary' : 'btn-outline-primary'
+                currentPage === index + 1 ? "btn-secondary" : "btn-outline-primary"
               }`}
               onClick={() => handlePageClick(index + 1)}
             >
@@ -92,7 +116,7 @@ const CategoryProducts = () => {
       <section className="mt-5">
         <h3 className="fw-bold mb-4">Popular Categories</h3>
         <div className="row g-4">
-          {['Electronics', 'Fashion', 'Books', 'Home Decor'].map((category, index) => (
+          {["Electronics", "Fashion", "Books", "Home Decor"].map((category, index) => (
             <CategoryCard key={index} category={category} />
           ))}
         </div>
@@ -101,4 +125,4 @@ const CategoryProducts = () => {
   );
 };
 
-export default CategoryProducts;
+export default AllCategory;
